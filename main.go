@@ -1,7 +1,10 @@
 package main
 
-import day2RockPaperScissors "advent-of-code-2022/day-2-rock-paper-scissors"
+import (
+	day2RockPaperScissors "advent-of-code-2022/day-2-rock-paper-scissors"
+	"fmt"
+)
 
 func main() {
-	day2RockPaperScissors.Run()
+	fmt.Println(day2RockPaperScissors.CalculateScore(day2RockPaperScissors.Part2Strategy))
 }
