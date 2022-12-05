@@ -11,7 +11,7 @@ func TestReturnCorrectTotalPriority(t *testing.T) {
 		"ttgJtRGJQctTZtZT",
 		"CrZsJsPPZsGzwwsLwLmpwMDw",
 	}
-	actual := calculateTotal(input)
+	actual := calcByCompartments(input)
 	expected := 157
 	if actual != expected {
 		t.Errorf("Expected Int(%d) is not same as"+
@@ -33,5 +33,22 @@ func TestReturnCorrectPriorityForLetter(t *testing.T) {
 			t.Errorf("Expected Int(%d) is not same as"+
 				" actual int (%d) for letter (%s)", expected, actual, string(letter))
 		}
+	}
+}
+
+func TestReturnCorrectPriorityByGroups(t *testing.T) {
+	input := []string{
+		"vJrwpWtwJgWrhcsFMMfFFhFp",
+		"jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+		"PmmdzqPrVvPwwTWBwg",
+		"wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+		"ttgJtRGJQctTZtZT",
+		"CrZsJsPPZsGzwwsLwLmpwMDw",
+	}
+	actual := calcByGroups(input)
+	expected := 70
+	if actual != expected {
+		t.Errorf("Expected Int(%d) is not same as"+
+			" actual int (%d)", expected, actual)
 	}
 }

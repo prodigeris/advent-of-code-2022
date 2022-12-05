@@ -5,17 +5,30 @@ import (
 	"strings"
 )
 
-func Run() int {
+func Run() (int, int) {
 	lines := common.ReadToLines("day-3-rucksack/input.txt")
-	return calculateTotal(lines)
+	return calcByCompartments(lines), calcByGroups(lines)
 }
 
-func calculateTotal(lines []string) int {
+func calcByCompartments(lines []string) int {
 	t := 0
 	for _, line := range lines {
 		h := len(line) / 2
 		for _, v := range line[:h] {
 			if strings.ContainsRune(line[h:], v) {
+				t += getPriority(v)
+				break
+			}
+		}
+	}
+	return t
+}
+
+func calcByGroups(lines []string) int {
+	t := 0
+	for i := 0; i < len(lines); i += 3 {
+		for _, v := range lines[i] {
+			if strings.ContainsRune(lines[i+1], v) && strings.ContainsRune(lines[i+2], v) {
 				t += getPriority(v)
 				break
 			}
