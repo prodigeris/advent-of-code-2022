@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestReturnCorrectPriorityByGroups(t *testing.T) {
+func TestSumFullyContain(t *testing.T) {
 	input := []string{
 		"2-4,6-8",
 		"2-3,4-5",
@@ -14,8 +14,25 @@ func TestReturnCorrectPriorityByGroups(t *testing.T) {
 		"6-6,4-6",
 		"2-6,4-8",
 	}
-	actual := sum(input)
+	actual, _ := sum(input)
 	expected := 2
+	if actual != expected {
+		t.Errorf("Expected Int(%d) is not same as"+
+			" actual int (%d)", expected, actual)
+	}
+}
+
+func TestSumOverlap(t *testing.T) {
+	input := []string{
+		"2-4,6-8",
+		"2-3,4-5",
+		"5-7,7-9",
+		"2-8,3-7",
+		"6-6,4-6",
+		"2-6,4-8",
+	}
+	_, actual := sum(input)
+	expected := 4
 	if actual != expected {
 		t.Errorf("Expected Int(%d) is not same as"+
 			" actual int (%d)", expected, actual)

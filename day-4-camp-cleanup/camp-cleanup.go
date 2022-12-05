@@ -6,21 +6,24 @@ import (
 	"strings"
 )
 
-func Run() int {
+func Run() (int, int) {
 	lines := common.ReadToLines("day-4-camp-cleanup/input.txt")
 	return sum(lines)
 }
 
-func sum(lines []string) int {
-	t := 0
+func sum(lines []string) (int, int) {
+	c, o := 0, 0
 	for _, v := range lines {
 		ranges := strings.Split(v, ",")
+		if doRangesFullyContain(stringRangesToSlice(ranges[0]), stringRangesToSlice(ranges[1])) {
+			c++
+		}
 		if doRangesOverlap(stringRangesToSlice(ranges[0]), stringRangesToSlice(ranges[1])) {
-			t++
+			o++
 		}
 	}
 
-	return t
+	return c, o
 }
 
 func stringRangesToSlice(r string) map[int]int {
@@ -38,9 +41,9 @@ func stringRangesToSlice(r string) map[int]int {
 	return ranges
 }
 
-func doRangesOverlap(r map[int]int, r2 map[int]int) bool {
+func doRangesFullyContain(r map[int]int, r2 map[int]int) bool {
 	if len(r) > len(r2) {
-		return doRangesOverlap(r2, r)
+		return doRangesFullyContain(r2, r)
 	}
 	for _, v := range r {
 		_, found := r2[v]
@@ -49,4 +52,14 @@ func doRangesOverlap(r map[int]int, r2 map[int]int) bool {
 		}
 	}
 	return true
+}
+
+func doRangesOverlap(r map[int]int, r2 map[int]int) bool {
+	for _, v := range r {
+		_, found := r2[v]
+		if found {
+			return true
+		}
+	}
+	return false
 }
