@@ -1,10 +1,9 @@
 package main
 
 import (
-	day2RockPaperScissors "advent-of-code-2022/day-2-rock-paper-scissors"
-	"fmt"
+	day_3_rucksack "advent-of-code-2022/day-3-rucksack"
 )
 
 func main() {
-	fmt.Println(day2RockPaperScissors.CalculateScore(day2RockPaperScissors.Part2Strategy))
+	day_3_rucksack.Run()
 }
