@@ -3,20 +3,19 @@ package calories
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
 
-type Calories uint
-
 func Run() {
 	lines := readInput()
-	elves := make(map[int]Calories)
+	elves := make([]int, 1)
 	c := 0
-	max := Calories(0)
 	for _, v := range lines {
 		if v == "" {
 			c++
+			elves = append(elves, 0)
 			continue
 		}
 
@@ -24,14 +23,22 @@ func Run() {
 		if err != nil {
 			panic(err)
 		}
-		elves[c] += Calories(i)
-
-		if elves[c] > max {
-			max = elves[c]
-		}
+		elves[c] += i
 	}
 
-	fmt.Println(max)
+	sort.Ints(elves)
+	top3 := elves[len(elves)-3:]
+
+	fmt.Println("Top 3 elves:", top3)
+	fmt.Println("Top 3 total calories:", sum(top3))
+}
+
+func sum(r []int) int {
+	t := 0
+	for _, v := range r {
+		t += v
+	}
+	return t
 }
 
 func readInput() []string {
