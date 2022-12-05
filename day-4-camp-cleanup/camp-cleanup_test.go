@@ -23,13 +23,13 @@ func TestReturnCorrectPriorityByGroups(t *testing.T) {
 }
 
 func TestReturnStringRangeToSlice(t *testing.T) {
-	input := map[string][]int{
-		"2-4": {2, 3, 4},
-		"2-3": {2, 3},
-		"5-7": {5, 6, 7},
-		"2-8": {2, 3, 4, 5, 6, 7, 8},
-		"6-6": {6},
-		"2-6": {2, 3, 4, 5, 6},
+	input := map[string]map[int]int{
+		"2-4": {2: 2, 3: 3, 4: 4},
+		"2-3": {2: 2, 3: 3},
+		"5-7": {5: 5, 6: 6, 7: 7},
+		"2-8": {2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8},
+		"6-6": {6: 6},
+		"2-6": {2: 2, 3: 3, 4: 4, 5: 5, 6: 6},
 	}
 
 	for str, expected := range input {

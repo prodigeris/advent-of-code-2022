@@ -1,10 +1,10 @@
 package main
 
 import (
-	day_3_rucksack "advent-of-code-2022/day-3-rucksack"
+	day_4_camp_cleanup "advent-of-code-2022/day-4-camp-cleanup"
 	"fmt"
 )
 
 func main() {
-	fmt.Println(day_3_rucksack.Run())
+	fmt.Println(day_4_camp_cleanup.Run())
 }
