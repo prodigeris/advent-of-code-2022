@@ -1,15 +1,14 @@
 package calories
 
 import (
+	"advent-of-code-2022/common"
 	"fmt"
-	"os"
 	"sort"
 	"strconv"
-	"strings"
 )
 
 func Run() {
-	lines := readInput()
+	lines := common.ReadToLines("day-1-calorie-counting/input.txt")
 	elves := make([]int, 1)
 	c := 0
 	for _, v := range lines {
@@ -39,12 +38,4 @@ func sum(r []int) int {
 		t += v
 	}
 	return t
-}
-
-func readInput() []string {
-	d, err := os.ReadFile("day-1-calorie-counting/input.txt")
-	if err != nil {
-		panic(err)
-	}
-	return strings.Split(string(d), "\n")
 }
