@@ -2,18 +2,16 @@ package day_6_tuning_trouble
 
 import (
 	"advent-of-code-2022/common"
-	"fmt"
 )
 
-func Run() int {
+func Run() (int, int) {
 	lines := common.ReadToLines("day-6-tuning-trouble/input.txt")
-	return detect(lines[0])
+	return detect(lines[0], 4), detect(lines[0], 14)
 }
 
-func detect(s string) int {
-	for i := 4; i <= len(s); i++ {
-		if checkIfAllLettersDifferent(s[i-4 : i]) {
-			fmt.Println(s, i, i+4, s[i-4:i])
+func detect(s string, count int) int {
+	for i := count; i <= len(s); i++ {
+		if checkIfAllLettersDifferent(s[i-count : i]) {
 			return i
 		}
 	}
