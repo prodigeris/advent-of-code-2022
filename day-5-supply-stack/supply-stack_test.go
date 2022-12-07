@@ -62,7 +62,7 @@ func TestCalc(t *testing.T) {
 		"move 2 from 2 to 1",
 		"move 1 from 1 to 2"}
 
-	actual := calc(input)
+	actual := calc(input, createMover9000)
 	expected := "CMZ"
 	if actual != expected {
 		t.Errorf("Expected String(%s) is not same as"+

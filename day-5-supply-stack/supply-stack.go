@@ -10,21 +10,18 @@ type action struct {
 	to     int
 }
 
+type crateMover func(stacks *map[int][]string, action action)
+
 func Run() string {
 	lines := common.ReadToLines("day-5-supply-stack/input.txt")
-	return calc(lines)
+	return calc(lines, createMover9000)
 }
 
-func calc(i []string) string {
+func calc(i []string, mover crateMover) string {
 	stacks, actions := parse(i)
 
 	for _, a := range actions {
-		for i := 0; i < a.amount; i++ {
-			stacks[a.to] = append(
-				[]string{stacks[a.from][0]},
-				stacks[a.to]...)
-			stacks[a.from] = stacks[a.from][1:]
-		}
+		mover(&stacks, a)
 	}
 
 	s := ""
