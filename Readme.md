@@ -4,4 +4,4 @@
 - [x] Day 2 - Rock Paper Scissors
 - [x] Day 3 - Rucksack
 - [x] Day 4 - Camp cleanup
-- [ ] Day 5 - Supply stacks
+- [x] Day 5 - Supply stacks
