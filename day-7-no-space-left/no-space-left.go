@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func Run() uint64 {
+func Run() (uint64, uint64) {
 	lines := common.ReadToLines("day-7-no-space-left/input.txt")
 	return interpret(lines)
 }
@@ -18,7 +18,7 @@ type directory struct {
 	parent *directory
 }
 
-func interpret(c []string) uint64 {
+func interpret(c []string) (uint64, uint64) {
 	d := directory{"home", 0, nil}
 	current := &d
 	directories := []*directory{&d}
@@ -58,13 +58,19 @@ func interpret(c []string) uint64 {
 	}
 
 	t := uint64(0)
+	spaceNeeded := 30000000 - (70000000 - directories[0].size)
+	minDir := uint64(30000000)
 	for _, dir := range directories {
 		if dir.size <= 100000 {
 			t += dir.size
 		}
+
+		if dir.size >= spaceNeeded && dir.size < minDir {
+			minDir = dir.size
+		}
 	}
 
-	return t
+	return t, minDir
 }
 
 func addSize(current *directory, size int) {
