@@ -1,6 +1,8 @@
 package day_5_supply_stack
 
-import "fmt"
+import (
+	"advent-of-code-2022/common"
+)
 
 type action struct {
 	amount int
@@ -8,7 +10,9 @@ type action struct {
 	to     int
 }
 
-func Run() {
+func Run() string {
+	lines := common.ReadToLines("day-5-supply-stack/input.txt")
+	return calc(lines)
 }
 
 func calc(i []string) string {
@@ -16,12 +20,12 @@ func calc(i []string) string {
 
 	for _, a := range actions {
 		for i := 0; i < a.amount; i++ {
-			stacks[a.to] = append([]string{stacks[a.from][0]}, stacks[a.to]...)
+			stacks[a.to] = append(
+				[]string{stacks[a.from][0]},
+				stacks[a.to]...)
 			stacks[a.from] = stacks[a.from][1:]
 		}
 	}
-
-	fmt.Println(stacks)
 
 	s := ""
 	for i := 1; i <= len(stacks); i++ {

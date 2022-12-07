@@ -34,7 +34,23 @@ func TestParsesInputCorrectly(t *testing.T) {
 
 }
 
-func TestSumFullyContain(t *testing.T) {
+func TestParse5Stacks(t *testing.T) {
+	input := []string{
+		"    [D]            ",
+		"[N] [C]            ",
+		"[Z] [M] [P] [A] [X]",
+		" 1   2   3   4   5 "}
+
+	actual := parseStacks(input)
+	expected := map[int][]string{1: {"N", "Z"}, 2: {"D", "C", "M"}, 3: {"P"}, 4: {"A"}, 5: {"X"}}
+
+	if !reflect.DeepEqual(expected, actual) {
+		t.Errorf("Expected (%v) is not same as"+
+			" actual (%v)", expected, actual)
+	}
+}
+
+func TestCalc(t *testing.T) {
 	input := []string{
 		"    [D]    ",
 		"[N] [C]    ",

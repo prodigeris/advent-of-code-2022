@@ -1,6 +1,7 @@
 package day_5_supply_stack
 
 import (
+	"fmt"
 	"regexp"
 	"strconv"
 )
@@ -26,14 +27,18 @@ func parse(l []string) (map[int][]string, []action) {
 
 func parseStacks(i []string) map[int][]string {
 	s := make(map[int][]string)
-	for _, v := range i {
-		for i := 0; i < 12; i += 4 {
+	for k, v := range i {
+		if k+1 == len(i) {
+			break
+		}
+		for i := 0; i < len(v); i += 4 {
 			re := regexp.MustCompile(`(\[|\]|\s|\d)`)
 			l := re.ReplaceAllString(v[i:i+3], "")
 			if l == "" {
 				continue
 			}
-			k := i%3 + 1
+
+			k := i/4 + 1
 			if _, ok := s[k]; !ok {
 				s[k] = []string{}
 			}
@@ -45,8 +50,9 @@ func parseStacks(i []string) map[int][]string {
 
 func parseActions(a []string) (r []action) {
 	for _, v := range a {
-		re := regexp.MustCompile(`move (.?) from (.?) to (.?)`)
+		re := regexp.MustCompile(`move (.+) from (.+) to (.+)`)
 		match := re.FindStringSubmatch(v)
+		fmt.Println(v, match)
 		amount, err1 := strconv.Atoi(match[1])
 		from, err2 := strconv.Atoi(match[2])
 		to, err3 := strconv.Atoi(match[3])
