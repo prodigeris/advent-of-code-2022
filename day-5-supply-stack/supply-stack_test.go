@@ -50,7 +50,7 @@ func TestParse5Stacks(t *testing.T) {
 	}
 }
 
-func TestCalc(t *testing.T) {
+func TestCrateMover9000(t *testing.T) {
 	input := []string{
 		"    [D]    ",
 		"[N] [C]    ",
@@ -64,6 +64,26 @@ func TestCalc(t *testing.T) {
 
 	actual := calc(input, createMover9000)
 	expected := "CMZ"
+	if actual != expected {
+		t.Errorf("Expected String(%s) is not same as"+
+			" actual string (%s)", expected, actual)
+	}
+}
+
+func TestCrateMover9001(t *testing.T) {
+	input := []string{
+		"    [D]    ",
+		"[N] [C]    ",
+		"[Z] [M] [P]",
+		" 1   2   3 ",
+		"",
+		"move 1 from 2 to 1",
+		"move 3 from 1 to 3",
+		"move 2 from 2 to 1",
+		"move 1 from 1 to 2"}
+
+	actual := calc(input, createMover9001)
+	expected := "MCD"
 	if actual != expected {
 		t.Errorf("Expected String(%s) is not same as"+
 			" actual string (%s)", expected, actual)

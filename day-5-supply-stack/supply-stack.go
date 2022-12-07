@@ -14,7 +14,7 @@ type crateMover func(stacks *map[int][]string, action action)
 
 func Run() string {
 	lines := common.ReadToLines("day-5-supply-stack/input.txt")
-	return calc(lines, createMover9000)
+	return calc(lines, createMover9001)
 }
 
 func calc(i []string, mover crateMover) string {
