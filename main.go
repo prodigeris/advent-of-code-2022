@@ -1,10 +1,10 @@
 package main
 
 import (
-	day_5_supply_stack "advent-of-code-2022/day-5-supply-stack"
+	day_6_tuning_trouble "advent-of-code-2022/day-6-tuning-trouble"
 	"fmt"
 )
 
 func main() {
-	fmt.Println(day_5_supply_stack.Run())
+	fmt.Println(day_6_tuning_trouble.Run())
 }

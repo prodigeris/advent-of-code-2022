@@ -1,6 +1,14 @@
 package day_6_tuning_trouble
 
-import "fmt"
+import (
+	"advent-of-code-2022/common"
+	"fmt"
+)
+
+func Run() int {
+	lines := common.ReadToLines("day-6-tuning-trouble/input.txt")
+	return detect(lines[0])
+}
 
 func detect(s string) int {
 	for i := 4; i <= len(s); i++ {
