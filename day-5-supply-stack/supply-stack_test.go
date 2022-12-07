@@ -6,24 +6,25 @@ import (
 )
 
 func TestParsesInputCorrectly(t *testing.T) {
-	input := []string{"[D]",
-		"[N] [C]",
+	input := []string{
+		"    [D]    ",
+		"[N] [C]    ",
 		"[Z] [M] [P]",
-		"1   2   3",
+		" 1   2   3 ",
 		"",
 		"move 1 from 2 to 1",
 		"move 3 from 1 to 3",
 		"move 2 from 2 to 1",
 		"move 1 from 1 to 2"}
 
-	expectedStacks := [][]rune{{'N', 'Z'}, {'D', 'C', 'M'}, {'P'}}
+	expectedStacks := map[int][]string{1: {"N", "Z"}, 2: {"D", "C", "M"}, 3: {"P"}}
 	expectedActions := []action{{1, 2, 1}, {3, 1, 3}, {2, 2, 1}, {1, 1, 2}}
 
 	stacks, actions := parse(input)
 
 	if !reflect.DeepEqual(expectedStacks, stacks) {
-		t.Errorf("Expected [][]rune(%v) is not same as"+
-			" actual [][]rune (%v)", expectedStacks, stacks)
+		t.Errorf("Expected (%v) is not same as"+
+			" actual (%v)", expectedStacks, stacks)
 	}
 
 	if !reflect.DeepEqual(expectedActions, actions) {
