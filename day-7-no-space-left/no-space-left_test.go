@@ -29,7 +29,7 @@ func TestCrateMover9001(t *testing.T) {
 		"7214296 k",
 	}
 
-	actual := interpret(input)
+	actual, _ := interpret(input)
 	if actual != 95437 {
 		t.Errorf("Expected int(%d) is not same as"+
 			" actual int(%d)", 95437, actual)

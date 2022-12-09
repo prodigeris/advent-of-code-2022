@@ -1,10 +1,10 @@
 package main
 
 import (
-	day_7_no_space_left "advent-of-code-2022/day-7-no-space-left"
+	day_8_treetop_treehouse "advent-of-code-2022/day-8-treetop-treehouse"
 	"fmt"
 )
 
 func main() {
-	fmt.Println(day_7_no_space_left.Run())
+	fmt.Println(day_8_treetop_treehouse.Run())
 }
